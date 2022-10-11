@@ -1,0 +1,66 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://kit.fontawesome.com/4d0d4da3d9.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<title>Random Quote Machine</title>
+  </head>
+  <body>
+    <div id="quote-box">
+      <div id="crop">
+        <div class="text" id="text"></div>
+      <div class="author" id="author"></div>
+      <div> 
+        <script>
+            const change = () => {
+    
+         
+         let rand  =  Math.floor(Math.random() * 100)
+  console.log(document.getElementById('text'));
+ document.getElementById('text').innerHTML = $.getJSON('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json', function(data) {
+
+        var text = ` ${data.quotes[rand].quote}<br>
+                    `
+
+
+        $(".text").html(text);
+        
+    });
+       
+         document.getElementById('author').innerHTML = $.getJSON('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json', function(data) {
+
+        var text = `Author: ${data.quotes[rand].author}<br>
+                    `
+        $(".author").html(text);
+        
+    });
+
+};  
+   function changeColor(){
+    var colors = ['#ff0000', '#00ff00','#9f66d1', '#7f7fb8','#66d9e3', '#226a70','#0aebff','#46186e', '#b09fbf','#edd09a','#875c0b','#e8a323','#fa3e25','#d9afa9','#7a1507'];
+    var random_color = colors[Math. floor(Math. random() * colors. length)];
+    document.getElementById('text').style.color = random_color;
+   document.getElementById('author').style.color = random_color;
+     document.getElementById('quote-box').style.backgroundColor = random_color;
+     document.getElementById('new-quote').style.backgroundColor = random_color;
+     document.getElementById('share').style.color = random_color;
+     document.getElementById('shareF').style.color = random_color;
+  }        
+        </script>
+     
+        <button type="button" class="btn btn-success btn-block" id="new-quote" onclick="change(), changeColor()"> New Quote</button>
+          
+        </div>
+        
+        
+      <div id="social">
+        <button class="btn btn-primary btn-block" id="tweet-quote"><a href = "twitter.com/intent/tweet"/><i id="share" class="fa-brands fa-twitter"></i>
+          <button class="btn btn-primary btn-block" id="tweet-quote"><a href = "facebook.com"/><i id="shareF" class="fa-brands fa-facebook-f"></i>
+        </button></div>
+      </div>
+    </div>
+  </body>
+</html>
